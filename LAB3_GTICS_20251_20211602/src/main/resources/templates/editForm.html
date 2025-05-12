@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Empleado</title>
+    <link rel="stylesheet" href="/sidebar.css">
+</head>
+<body>
+
+<div th:replace="/navbar :: navbar"></div>
+
+<div class="main p-4">
+    <h2>Editar ubicación del empleado</h2>
+
+    <form th:action="@{/empleados/updateLocation}" th:object="${empDto}" method="post" class="form-group">
+
+        <input type="hidden" th:field="*{employeeId}"/>
+        <input type="hidden" th:field="*{locationId}"/>
+
+        <div class="mb-3">
+            <label>Nombre:</label>
+            <input type="text" th:field="*{firstName}" class="form-control" readonly/>
+        </div>
+
+        <div class="mb-3">
+            <label>Apellido:</label>
+            <input type="text" th:field="*{lastName}" class="form-control" readonly/>
+        </div>
+
+        <div class="mb-3">
+            <label>Email:</label>
+            <input type="email" th:field="*{email}" class="form-control" readonly/>
+        </div>
+
+        <div class="mb-3">
+            <label>Puesto:</label>
+            <input type="text" th:field="*{jobTitle}" class="form-control" readonly/>
+        </div>
+
+        <div class="mb-3">
+            <label>Ciudad:</label>
+            <select th:field="*{city}" class="form-select">
+                <option th:each="ciudad : ${ciudades}" th:value="${ciudad}" th:text="${ciudad}"></option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Código Postal:</label>
+            <input type="text" th:field="*{postalCode}" class="form-control" required/>
+        </div>
+
+        <button type="submit" class="btn btn-success">Actualizar</button>
+        <a th:href="@{/empleados}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+</body>
+</html>
