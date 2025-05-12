@@ -23,6 +23,7 @@ public class ReportController {
 
         List<Employee> empleados = (filtro != null && !filtro.isEmpty())
                 ? employeeRepository.findByFirstNameContainingIgnoreCase(filtro)
+
                 : employeeRepository.findAll();
 
         model.addAttribute("empleados", empleados);
