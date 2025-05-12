@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte de empleados</title>
+    <link rel="stylesheet" href="/sidebar.css">
+</head>
+<body>
+
+<div th:replace="/navbar :: navbar"></div>
+
+<div class="main p-4">
+    <h2>Reporte de empleados</h2>
+
+    <form method="get" th:action="@{/reportes}" class="mb-3 d-flex gap-2">
+        <input type="text" name="filtro" th:value="${filtro}" placeholder="Buscar por nombre" class="form-control w-25">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+        <a th:href="@{/reportes}" class="btn btn-secondary">Limpiar</a>
+    </form>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Salario más alto</th>
+            <th>Salario más bajo</th>
+            <th>Empleado con salario más alto</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${salarioMax}">-</td>
+            <td th:text="${salarioMin}">-</td>
+            <td th:text="${nombreMax}">-</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h4 class="mt-4">Promedio por puesto de trabajo</h4>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Puesto</th>
+            <th>Salario promedio</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="fila : ${promedios}">
+            <td th:text="${fila[0]}">Puesto</td>
+            <td th:text="${fila[1]}">0.00</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
