@@ -10,7 +10,8 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
-    List<Employee> findByFirstNameContainingIgnoreCase(String nombre, String departamento);
+    List<Employee> findByFirstNameContainingIgnoreCaseOrDepartment_DepartmentNameContainingIgnoreCase(String nombre, String departamento);
+    List<Employee> findByFirstNameContainingIgnoreCase(String filtro);
 
     @Query("SELECT MAX(e.salary) FROM Employee e")
     Double obtenerSalarioMaximo();

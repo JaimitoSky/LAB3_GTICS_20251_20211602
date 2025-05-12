@@ -22,7 +22,8 @@ public class ReportController {
     public String verReportes(@RequestParam(value = "filtro", required = false) String filtro, Model model) {
 
         List<Employee> empleados = (filtro != null && !filtro.isEmpty())
-                ? employeeRepository.findByFirstNameContainingIgnorgeCase(filtro)
+                ? employeeRepository.findByFirstNameContainingIgnoreCase(filtro)
+
                 : employeeRepository.findAll();
 
         model.addAttribute("empleados", empleados);
