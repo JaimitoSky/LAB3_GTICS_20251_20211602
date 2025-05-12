@@ -10,7 +10,8 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
-    List<Employee> findByFirstNameContainingIgnoreCase(String nombre);
+    List<Employee> findByFirstNameContainingIgnoreCaseOrDepartment_DepartmentNameContainingIgnoreCase(String nombre, String departamento);
+    List<Employee> findByFirstNameContainingIgnoreCase(String filtro);
 
     @Query("SELECT MAX(e.salary) FROM Employee e")
     Double obtenerSalarioMaximo();
@@ -24,4 +25,3 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query("SELECT CONCAT(e.firstName, ' ', e.lastName) FROM Employee e WHERE e.salary = (SELECT MAX(e2.salary) FROM Employee e2)")
     String obtenerEmpleadoConSalarioMaximo();
 }
-
