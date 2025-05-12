@@ -3,15 +3,15 @@ package modelos.lab3_gtics_20251_20211602.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "employees")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class Employee {
 
+@Getter
+@Setter
+public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employee_id")
     private Integer employeeId;
 
@@ -28,7 +28,7 @@ public class Employee {
     private String phoneNumber;
 
     @Column(name = "hire_date")
-    private String hireDate;
+    private java.sql.Date hireDate;
 
     @ManyToOne
     @JoinColumn(name = "job_id")
@@ -47,4 +47,7 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
+
+    @OneToMany(mappedBy = "employee")
+    private List<JobHistory> jobHistories;
 }

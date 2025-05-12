@@ -7,14 +7,14 @@ import java.util.List;
 
 @Entity
 @Table(name = "jobs")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class Job {
 
+@Getter
+@Setter
+public class Job {
     @Id
-    @Column(name = "job_id")
+    @Column(name = "job_id", length = 10)
     private String jobId;
+
 
     @Column(name = "job_title")
     private String jobTitle;
@@ -27,4 +27,7 @@ public class Job {
 
     @OneToMany(mappedBy = "job")
     private List<Employee> employees;
+
+    @OneToMany(mappedBy = "job")
+    private List<JobHistory> jobHistories;
 }

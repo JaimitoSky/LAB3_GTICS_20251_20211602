@@ -6,19 +6,21 @@ import lombok.*;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "departments")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class Department {
 
+public class Department {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "department_id")
     private Integer departmentId;
 
     @Column(name = "department_name")
     private String departmentName;
+
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
 
     @ManyToOne
     @JoinColumn(name = "manager_id")
@@ -27,3 +29,4 @@ public class Department {
     @OneToMany(mappedBy = "department")
     private List<Employee> employees;
 }
+
